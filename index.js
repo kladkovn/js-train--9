@@ -11,10 +11,11 @@ function findElementGreaterThan(arr, num) {
     return undefined;
   } // Перевіряємо, чи вхідний параметр є масивом, якщо ні повертаємо undefined
   // повертаємо undefined
- let num1 = num;
-  
-  const foundElement = arr.find((num) => num > num1);
+   
+  const foundElement = arr.find((element) => element > num);
+    if(foundElement){
     return(foundElement);
+  } return ('Числа яке задовільняе умову не знайдено');
   }
 
    // Використовуємо метод find для пошуку першого елементу, який є більшим за задане число num.
@@ -39,11 +40,10 @@ function findIndexByProperty(arr, name) {
   if (!Array.isArray(arr)){
     return -1;
   } // Перевіряємо, чи вхідний параметр є масивом, якщо ні повертаємо -1
-  let name1 = name;
+  // let name1 = name;
   // Використовуємо метод findIndex для пошуку індексу об'єкта, властивість 'name' якого співпадає з заданим іменем.
-  let foundIndex = arr.findIndex((name) => name1 === name);
-  if(name1 === name){
-  return(foundIndex);}// Повертаємо знайдений індекс або -1, якщо об'єкт не знайдено.
+  const foundIndex = arr.findIndex((obj) => obj.name === name);
+  return foundIndex >= 0 ? foundIndex : 'object not found';// Повертаємо знайдений індекс або -1, якщо об'єкт не знайдено.
 }
 
 console.log("Завдання: 2  ==============================");
@@ -70,10 +70,11 @@ function findLastEvenNumber(arr) {
   if (!Array.isArray(arr)){
     return ('Вхідний параметр має бути масивом');
   }  // Перевіряємо, чи вхідний параметр є масивом, якщо ні повертаємо 'Вхідний параметр має бути масивом'
-  const found = arr.findLast((element) => element);
-  if(found % 2 === 0){
-    return found;
-  } return('Парних чисел не знайдено'); // За допомогою метода findLast знаходимо останнє парне число в масиві.
+  const lastEvenNumber = arr.findLast((num) => num % 2 === 0);
+
+   return lastEvenNumber !== undefined
+   ? lastEvenNumber
+   : ('Парних чисел не знайдено'); // За допомогою метода findLast знаходимо останнє парне число в масиві.
   // Повертаємо знайдене число або 'Парних чисел не знайдено', якщо таке число не знайдено.
 }
 
@@ -94,8 +95,8 @@ function getSubArrayAndConvertToString(arr, startIdx) {
     return ('Вхідний параметр має бути масивом');
   } // Перевіряємо, чи вхідний параметр є масивом, якщо ні повертаємо 'Вхідний параметр має бути масивом'
   const subArr = arr.slice(startIdx);  // За допомогою методу slice() отримуємо підмасив від заданого індексу до кінця масиву.
-  const newArr = subArr.join(' ');  // За допомогою методу join() конвертуємо підмасив в рядок.
-  return(newArr);  // Повертаємо рядок.
+  const newArr = subArr.join(" ");  // За допомогою методу join() конвертуємо підмасив в рядок.
+  return newArr;  // Повертаємо рядок.
 }
 
 console.log("Завдання: 4 ==============================");
@@ -120,9 +121,8 @@ function getArrayKeys(arr) {
     return ('Вхідний параметр має бути масивом');
   }  // Перевіряємо, чи вхідний параметр є масивом, якщо ні повертаємо 'Вхідний параметр має бути масивом'
   const iterator = arr.keys();  // За допомогою методу keys() отримуємо об'єкт ітератора, який містить ключі масиву.
-  for(const key of iterator){
-    console.log(key);
-  }  // Конвертуємо ітератор в масив за допомогою методу from.
+  const arrKeys = Array.from(iterator);
+  return arrKeys; // Конвертуємо ітератор в масив за допомогою методу from.
     // Повертаємо масив ключів.
 }
 
@@ -142,10 +142,9 @@ function getPositiveArrayValues(arr) {
     return('Вхідний параметр має бути масивом');
   }  // Перевіряємо, чи вхідний параметр є масивом, якщо ні повертаємо 'Вхідний параметр має бути масивом'
   const iterator = arr.values();  // За допомогою методу values() отримуємо об'єкт ітератора, який містить значення масиву.
-  for(const value of iterator){
-    console.log(value);
-  }  // Конвертуємо ітератор в масив.
-  const result = arr.filter(value => value > 0);  // За допомогою методу filter() отримуємо масив лише з додатніми значеннями.
+  const arrValue = Array.from(iterator);
+    // Конвертуємо ітератор в масив.
+  const result = arrValue.filter((value) => value > 0);  // За допомогою методу filter() отримуємо масив лише з додатніми значеннями.
     return result;// Повертаємо масив додатніх значень.
 }
 
